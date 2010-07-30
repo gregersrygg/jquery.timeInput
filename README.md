@@ -8,11 +8,12 @@ Inspired by the jQuery timePicker plugin:
 
 The syntax is as follows:
 
-    <input type="time" name="myTime" class="time-mm-hh" />
+    <input type="time" name="myTime" class="time-mm-hh" min="6:00" max="15:00" span="900" />
+    <input type="time" name="myTime2" class="time-mm-hh" />
 
-    <script>
-        $(expression).timeInput(); // use default or html5 attributes
-        $(expression).timeInput({min: "6:00", max: "15:00", step: 900}); // 15 min intervals from 6:00 am to 3:00 pm
+    <script type="text/javascript">
+        $("input[name='myTime']").timeInput(); // use default or html5 attributes
+        $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900}); // 15 min intervals from 6:00 am to 3:00 pm
     </script>
 
 
