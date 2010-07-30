@@ -8,7 +8,7 @@ Inspired by the jQuery timePicker plugin:
 
 The syntax is as follows:
 
-    <input type="time" name="myTime" class="time-mm-hh" min="6:00" max="15:00" step="900" />
+    <input type="time" name="myTime" class="time-mm-hh" min="9:00" max="18:00" step="1800" />
     <input type="time" name="myTime2" class="time-mm-hh" />
 
     <script type="text/javascript">
