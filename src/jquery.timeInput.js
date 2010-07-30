@@ -44,7 +44,7 @@
 		return this.each(function() {
 			$(this).attr('autocomplete', 'OFF')
 			.bind("focus click", function(e) {
-				if(!m.listIsVisible()) m.showTimePicker(this);
+				if(!m.listIsVisible()) m.showTimePicker(this, options);
 				
 			}).bind("blur", function(e) {
 				if(m.listIsVisible() && !mouseOverList) m.hideTimePicker();
@@ -71,7 +71,7 @@
 				if(e.keyCode!=upKey && e.keyCode!=downKey) return;
 				
 				if( !m.listIsVisible() ) {
-					return m.showTimePicker(this);
+					return m.showTimePicker(this, options);
 				}
 				
 				if(!keyHeldDownForSteps) keyHeldDownForSteps = 0;
@@ -117,7 +117,7 @@
 			}).bind("input", function(e) {
 				var time = $(this).val();
 				if(time) {
-					if(!m.listIsVisible()) m.showTimePicker(this);
+					if(!m.listIsVisible()) m.showTimePicker(this, options);
 					// fill in : if user is writing a time like 800
 					time = m.insertTimeSeparator(time);
 					m.selectOption("ul.time-input-list:visible li:contains('"+time+"'):first")
@@ -128,9 +128,9 @@
 	
 	// private static methods
 	var m = {
-		showTimePicker: function(elm) {
+		showTimePicker: function(elm, options) {
 			$currentInput = $(elm);
-			var settings = $.extend( {}, defaults, m.getSettings($currentInput));
+			var settings = $.extend( {}, defaults, m.getSettings($currentInput), options);
 			settings.step = parseInt(settings.step, 10);
 			m.validateSettings(settings);
 			$currentInput.data("timeInputSettings", settings);
