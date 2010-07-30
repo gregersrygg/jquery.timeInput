@@ -2,6 +2,10 @@
  * Fallback for HTML5 time input. Based on spec:
  * http://dev.w3.org/html5/markup/input.time.html
  * 
+ * Inspired by the jQuery timePicker plugin:
+ *   Sam Collet (http://www.texotela.co.uk)
+ *   Anders Fajerson (http://perifer.se)
+ * 
  * Haven't used the recommended test to see if the browser supports time input. Chrome will say it
  * does, even though it doesn't. Opera is the only browser by 30.7.2010 that have implemented time
  * input, but it doesn't give any list of suggestions. So I decided to show the list for all
@@ -63,6 +67,7 @@
 				}
 				
 			}).bind("keydown", function keyDownListener(e, keyHeldDownForSteps) {
+				if($.browser.opera) return; // Opera won't let us prevent default action
 				if(e.keyCode!=upKey && e.keyCode!=downKey) return;
 				
 				if( !m.listIsVisible() ) {
@@ -84,9 +89,14 @@
 					keyDownListener(e, ++keyHeldDownForSteps);
 				}, waitMs);
 				
-			}).bind("keyup", function() {
+			}).bind("keyup", function(e) {
 				stopRepeatingKeyEvents = false;
 				clearInterval(keyTimer);
+				
+				// Hack for Opera, since it won't let us prevent default action on keydown
+				if($.browser.opera && (e.keyCode == upKey || e.keyCode == downKey) ) {
+					$(this).trigger("input");
+				}
 				
 			}).bind("keypress", function(e) {
 				switch(e.keyCode) {
@@ -318,11 +328,11 @@
 	
 		isValidTimeString: function(timeStr) {
 			if(timeStr === null || timeStr == "") return true;
-			return /^([0,1]?\d|2[0-3]):[0-5]\d$/.test(timeStr);
+			return /^([0,1]?\d|2[0-3]):[0-5]\d:?\d{0,2}$/.test(timeStr);
 		},
 	
 		insertTimeSeparator: function(timeStr) {
-			return timeStr.replace(/^([0-1]?\d|2[0-3]):?(\d{0,2})$/, "$1:$2");
+			return timeStr.replace(/^([0-1]?\d|2[0-3]):?(\d{0,2}):?\d{0,2}$/, "$1:$2");
 		},
 	
 		dateToTime: function(date) {
