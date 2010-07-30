@@ -5,24 +5,66 @@
 <link rel="stylesheet" type="text/css" href="../css/jquery.timeInput.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="../src/jquery.timeInput.js"></script>
+
+<style type="text/css">
+pre.code {
+	border: 1px solid #999;
+	background-color: #FF9;
+	padding: 1em;
+	margin: 0;
+}
+</style>
 </head>
 <body>
 
-<input type="time" name="myTime" class="time-mm-hh" min="9:00" max="18:00" step="1800" />
-<input type="text" name="myTime2" class="time-mm-hh" />
+<h1>Demo</h1>
 
-<script type="text/javascript">
+
+<p>The easiest way to define settings is by using the new html5 attributes: <em>min</em>, <em>max</em> and <em>step</em>. Use <a href="http://dev.w3.org/html5/markup/datatypes.html#form.data.time">partitial-time</a> format for <em>min</em> and <em>max</em>. <em>step</em> defines seconds between each suggested time.</p>
+
+
+<code><pre class="code">
+&lt;input type="time" name="myTime" min="9:00" max="18:00" step="1800" /&gt;
+&lt;script type="text/javascript"&gt;
 $(document).ready(function(){
-
     // use settings from the input's attributes (from the html5 spec)
     // 30 min intervals
     $("input[name='myTime']").timeInput();
+});
+&lt;/script&gt;
+</pre></code>
 
-    // 15 min intervals from 6:00 am to 3:00 pm
-    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900});
-
+<input type="time" name="myTime" min="9:00" max="18:00" step="1800" style="border:1px solid #929aa9;font-size:12px;width:55px;" /> Also, try using the <strong>keyboard</strong>. You can even skip the ':' if you're lazy ;)
+<script type="text/javascript">
+$(document).ready(function(){
+    $("input[name='myTime']").timeInput();
 });
 </script>
+
+
+
+
+<p>If you don't feel brave enough to use html5 features yet, you can use the old type="text" and define settings as an object literal:</p>
+
+<pre class="code">
+&lt;input type="text" name="myTime2" /&gt;
+&lt;script type="text/javascript"&gt;
+$(document).ready(function(){
+    // 15 min intervals from 6:00 am to 3:00 pm
+    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900});
+});
+&lt;/script&gt;
+</pre>
+
+<input type="text" name="myTime2" style="border:1px solid #929aa9;font-size:12px;width:55px;" /> Feel destructive? Try typing an <strong>invalid time</strong>, or a time <strong>between two steps</strong>.
+<script type="text/javascript">
+$(document).ready(function(){
+    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900});
+});
+</script>
+
+
+
 
 </body>
 </html>
