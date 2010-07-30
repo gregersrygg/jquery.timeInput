@@ -9,11 +9,19 @@
 <body>
 
 <input type="time" name="myTime" class="time-mm-hh" min="9:00" max="18:00" step="1800" />
-<input type="time" name="myTime2" class="time-mm-hh" />
+<input type="text" name="myTime2" class="time-mm-hh" />
 
 <script type="text/javascript">
-    $("input[name='myTime']").timeInput(); // use default or html5 attributes
-    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900}); // 15 min intervals from 6:00 am to 3:00 pm
+$(document).ready(function(){
+
+    // use settings from the input's attributes (from the html5 spec)
+    // 30 min intervals
+    $("input[name='myTime']").timeInput();
+
+    // 15 min intervals from 6:00 am to 3:00 pm
+    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900});
+
+});
 </script>
 
 </body>
