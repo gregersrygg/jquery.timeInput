@@ -1,5 +1,5 @@
 #About
-**jQuery timeInput** is a time picker plugin for jQuery based on the HTML5 spec, but it's backwards compatible with older browsers. Just a simple dropdown with suggested times in 24h format. am/pm is not a valid time according to the HTML5 spec. Validates and corrects hours and minutes. Seconds is not implemented yet. Feel free to send me pull requests.
+**jQuery timeInput** is a time picker plugin for jQuery based on the HTML5 spec, but it's backwards compatible with older browsers. Just a simple dropdown with suggested times in 24h format. The HTML5 spec doesn't allow am/pm or localized time syntax, so it only allowes the format hh:mm. Seconds is allowed according to spec, but I have not implemented it yet. Validates and corrects input. Feel free to send me pull requests.
 
 Inspired by the jQuery timePicker plugin:
 
@@ -30,6 +30,12 @@ Should work with:
  - Chrome
 
 ## Notes
+
+Validates input like this:
+
+ - Insert ":" if missing
+ - Not valid time? Replace with blank
+ - Not a valid time according to step? Round up/down to closest step
 
 IE won't let you use the selector input[type=time]. So use a class or similar instead.
 
