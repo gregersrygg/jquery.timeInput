@@ -1,0 +1,27 @@
+ul.time-input-list {
+  position: absolute;
+  height: 200px;
+  width: 70px;
+  overflow: auto;
+  overflow-y: auto;
+  overflow-x: none;
+  background: #fff;
+  border: 1px solid #000;
+  z-index: 99;
+  
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+ul.time-input-list li {
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+}
+
+ul.time-input-list li.selected {
+  background: #316AC5;
+  color: white;
+  cursor: pointer;
+}
