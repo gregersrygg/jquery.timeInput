@@ -8,11 +8,18 @@
 
 <style type="text/css">
 pre.code {
-	border: 1px solid #999;
-	background-color: #FF9;
-	padding: 1em;
-	margin: 0;
+    border: 1px solid #999;
+    background-color: #FF9;
+    padding: 1em;
+    margin: 0;
 }
+
+input.time-hh-mm {
+    border: 1px solid #929aa9;
+    font-size: 12px;
+    width: 55px;
+}
+
 </style>
 </head>
 <body>
@@ -34,7 +41,7 @@ $(document).ready(function(){
 &lt;/script&gt;
 </pre></code>
 
-<input type="time" name="myTime" min="9:00" max="18:00" step="1800" style="border:1px solid #929aa9;font-size:12px;width:55px;" /> Also, try using the <strong>keyboard</strong>. You can even skip the ':' if you're lazy ;)
+<input type="time" name="myTime" min="9:00" max="18:00" step="1800" class="time-hh-mm" /> Also, try using the <strong>keyboard</strong>. You can even skip the ':' if you're lazy ;)
 <script type="text/javascript">
 $(document).ready(function(){
     $("input[name='myTime']").timeInput();
@@ -56,7 +63,7 @@ $(document).ready(function(){
 &lt;/script&gt;
 </pre>
 
-<input type="text" name="myTime2" style="border:1px solid #929aa9;font-size:12px;width:55px;" /> Feel destructive? Try typing an <strong>invalid time</strong>, or a time <strong>between two steps</strong>.
+<input type="text" name="myTime2" class="time-hh-mm" /> Feel destructive? Try typing an <strong>invalid time</strong>, or a time <strong>between two steps</strong>.
 <script type="text/javascript">
 $(document).ready(function(){
     $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900});
