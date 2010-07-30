@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jquery.timeInput demo</title>
+<link rel="stylesheet" type="text/css" href="../css/jquery.timeInput.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../src/jquery.timeInput.js"></script>
+</head>
+<body>
+
+<input type="time" name="myTime" class="time-mm-hh" min="9:00" max="18:00" step="1800" />
+<input type="time" name="myTime2" class="time-mm-hh" />
+
+<script type="text/javascript">
+    $("input[name='myTime']").timeInput(); // use default or html5 attributes
+    $("input[name='myTime2']").timeInput({min: "6:00", max: "15:00", step: 900}); // 15 min intervals from 6:00 am to 3:00 pm
+</script>
+
+</body>
+</html>
