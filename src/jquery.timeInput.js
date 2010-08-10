@@ -52,8 +52,11 @@
 			}).bind("change", function(e) {
 				var $this = $(this),
 					orgTime = $this.val(), time = orgTime;
-				if(time.indexOf(":") < 0) {
+				if(time && time.indexOf(":") < 0) {
 					time = m.insertTimeSeparator(time);
+				}
+				if(time && time.length < 5) {
+					time = m.addZeroes(time);
 				}
 				
 				if( !m.isValidTimeString(time) ) {
@@ -104,13 +107,7 @@
 						m.chooseSelectedOption();
 						e.preventDefault();break;
 					case escKey:
-						m.hideTimePicker();
-						$(this).blur();break;
 					case tabKey:
-						var time = $(this).val();
-						if( m.isValidTimeString(time) && time.length < 5 ) {
-							$(this).val( m.dateToTime( m.timeToDate(time) ) );
-						}
 						m.hideTimePicker();break;
 				}
 				
@@ -332,7 +329,11 @@
 		},
 	
 		insertTimeSeparator: function(timeStr) {
-			return timeStr.replace(/^([0-1]?\d|2[0-3]):?(\d{0,2}):?\d{0,2}$/, "$1:$2");
+			return timeStr.replace(/^(2[0-3]|[0-1]?\d):?(\d{0,2}):?\d{0,2}$/, "$1:$2");
+		},
+		
+		addZeroes: function(timeStr) {
+			return timeStr.replace(/(\d{0,2}):(\d{0,2})/, function(str, h, m) { while(h.length < 2) h = "0" + h; while(m.length < 2) m += "0"; return h+":"+m });
 		},
 	
 		dateToTime: function(date) {
